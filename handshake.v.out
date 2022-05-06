@@ -1,0 +1,177 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1110-g18392a46)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "d:\新建文件夹\iverilog\lib\ivl\system.vpi";
+:vpi_module "d:\新建文件夹\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "d:\新建文件夹\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "d:\新建文件夹\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "d:\新建文件夹\iverilog\lib\ivl\va_math.vpi";
+S_000002036e5ebce0 .scope module, "handshake" "handshake" 2 1;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 1 "valid_s";
+    .port_info 3 /INPUT 8 "data_s";
+    .port_info 4 /OUTPUT 1 "ready_s";
+    .port_info 5 /INPUT 1 "ready_d";
+    .port_info 6 /OUTPUT 1 "valid_d";
+    .port_info 7 /OUTPUT 8 "data_d";
+o000002036e63a0d8 .functor BUFZ 1, C4<z>; HiZ drive
+L_000002036e5e9650 .functor NOT 1, o000002036e63a0d8, C4<0>, C4<0>, C4<0>;
+o000002036e63a1c8 .functor BUFZ 1, C4<z>; HiZ drive
+L_000002036e5e9c00 .functor AND 1, o000002036e63a1c8, L_000002036e5e9650, C4<1>, C4<1>;
+L_000002036e5e9c70 .functor AND 1, L_000002036e5e9c00, v000002036e6339a0_0, C4<1>, C4<1>;
+v000002036e5ebe70_0 .net *"_ivl_0", 0 0, L_000002036e5e9650;  1 drivers
+v000002036e5ebf10_0 .net *"_ivl_3", 0 0, L_000002036e5e9c00;  1 drivers
+o000002036e63a018 .functor BUFZ 1, C4<z>; HiZ drive
+v000002036e602b20_0 .net "clk", 0 0, o000002036e63a018;  0 drivers
+v000002036e5e9da0_0 .var "data_d", 7 0;
+o000002036e63a078 .functor BUFZ 8, C4<zzzzzzzz>; HiZ drive
+v000002036e5e9e40_0 .net "data_s", 7 0, o000002036e63a078;  0 drivers
+v000002036e5eb2f0_0 .var "data_tmp", 7 0;
+v000002036e5eb390_0 .net "ready_d", 0 0, o000002036e63a0d8;  0 drivers
+v000002036e6339a0_0 .var "ready_s", 0 0;
+o000002036e63a138 .functor BUFZ 1, C4<z>; HiZ drive
+v000002036e633a40_0 .net "rst_n", 0 0, o000002036e63a138;  0 drivers
+v000002036e633b70_0 .net "store", 0 0, L_000002036e5e9c70;  1 drivers
+v000002036e633c10_0 .var "valid_d", 0 0;
+v000002036e633cb0_0 .net "valid_s", 0 0, o000002036e63a1c8;  0 drivers
+v000002036e682cd0_0 .var "valid_tmp", 0 0;
+E_000002036e6382f0 .event posedge, v000002036e602b20_0;
+    .scope S_000002036e5ebce0;
+T_0 ;
+    %wait E_000002036e6382f0;
+    %load/vec4 v000002036e633a40_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v000002036e682cd0_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v000002036e682cd0_0;
+    %flag_set/vec4 8;
+    %jmp/0 T_0.2, 8;
+    %load/vec4 v000002036e5eb390_0;
+    %inv;
+    %jmp/1 T_0.3, 8;
+T_0.2 ; End of true expr.
+    %load/vec4 v000002036e633b70_0;
+    %jmp/0 T_0.3, 8;
+ ; End of false expr.
+    %blend;
+T_0.3;
+    %assign/vec4 v000002036e682cd0_0, 0;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_000002036e5ebce0;
+T_1 ;
+    %wait E_000002036e6382f0;
+    %load/vec4 v000002036e633a40_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.0, 8;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v000002036e5eb2f0_0, 0;
+    %jmp T_1.1;
+T_1.0 ;
+    %load/vec4 v000002036e633b70_0;
+    %flag_set/vec4 8;
+    %jmp/0 T_1.2, 8;
+    %load/vec4 v000002036e5e9e40_0;
+    %jmp/1 T_1.3, 8;
+T_1.2 ; End of true expr.
+    %load/vec4 v000002036e5eb2f0_0;
+    %jmp/0 T_1.3, 8;
+ ; End of false expr.
+    %blend;
+T_1.3;
+    %assign/vec4 v000002036e5eb2f0_0, 0;
+T_1.1 ;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_000002036e5ebce0;
+T_2 ;
+    %wait E_000002036e6382f0;
+    %load/vec4 v000002036e633a40_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_2.0, 8;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v000002036e6339a0_0, 0;
+    %jmp T_2.1;
+T_2.0 ;
+    %load/vec4 v000002036e5eb390_0;
+    %load/vec4 v000002036e682cd0_0;
+    %nor/r;
+    %load/vec4 v000002036e633b70_0;
+    %nor/r;
+    %and;
+    %or;
+    %assign/vec4 v000002036e6339a0_0, 0;
+T_2.1 ;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_000002036e5ebce0;
+T_3 ;
+    %wait E_000002036e6382f0;
+    %load/vec4 v000002036e633a40_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_3.0, 8;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v000002036e633c10_0, 0;
+    %jmp T_3.1;
+T_3.0 ;
+    %load/vec4 v000002036e6339a0_0;
+    %load/vec4 v000002036e633cb0_0;
+    %and;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_3.2, 8;
+    %load/vec4 v000002036e633cb0_0;
+    %assign/vec4 v000002036e633c10_0, 0;
+T_3.2 ;
+T_3.1 ;
+    %jmp T_3;
+    .thread T_3;
+    .scope S_000002036e5ebce0;
+T_4 ;
+    %wait E_000002036e6382f0;
+    %load/vec4 v000002036e633a40_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_4.0, 8;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v000002036e5e9da0_0, 0;
+    %jmp T_4.1;
+T_4.0 ;
+    %load/vec4 v000002036e633cb0_0;
+    %cmpi/e 0, 0, 1;
+    %jmp/0xz  T_4.2, 4;
+    %load/vec4 v000002036e5e9da0_0;
+    %assign/vec4 v000002036e5e9da0_0, 0;
+    %jmp T_4.3;
+T_4.2 ;
+    %load/vec4 v000002036e6339a0_0;
+    %flag_set/vec4 8;
+    %jmp/0 T_4.4, 8;
+    %load/vec4 v000002036e5e9e40_0;
+    %jmp/1 T_4.5, 8;
+T_4.4 ; End of true expr.
+    %load/vec4 v000002036e5eb2f0_0;
+    %jmp/0 T_4.5, 8;
+ ; End of false expr.
+    %blend;
+T_4.5;
+    %assign/vec4 v000002036e5e9da0_0, 0;
+T_4.3 ;
+T_4.1 ;
+    %jmp T_4;
+    .thread T_4;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "handshake.v";
